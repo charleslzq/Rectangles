@@ -1,0 +1,147 @@
+package indv.zqliu.Rectangles;
+
+import java.util.Comparator;
+
+/**
+ * 此接口用于定义两个矩形间的位置比较操作，不包括相邻性的判断
+ * @author 刘正亓
+ * @version 1.0
+ */
+public interface RectangleComparison {
+	/**
+	 * 此方法用于判断矩形ro1是否在矩形ro2的左侧
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1在ro2的左侧；否则为false
+	 */
+	public boolean isOnLeft(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否在矩形ro2的上方
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1在ro2的上方；否则为false
+	 */
+	public boolean isOnTop(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否在矩形ro2的左上方，排序结果优先在上方的矩形
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1在ro2的左上方；否则为false
+	 */
+	public boolean isOnTopLeft(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否在矩形ro2的左上方，排序结果优先在左方的矩形
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1在ro2的左侧；否则为false
+	 */
+	public boolean isOnLeftTop(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否与矩形ro2左对齐
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1与ro2左对齐；否则为false
+	 */
+	public boolean isLeftAlignment(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否与矩形ro2右对齐
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1与ro2右对齐；否则为false
+	 */
+	public boolean isRightAlignment(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否与矩形ro2上对齐
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1与ro2上对齐；否则为false
+	 */
+	public boolean isTopAlignment(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否与矩形ro2下对齐
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1与ro2下对齐；否则为false
+	 */
+	public boolean isBottomAlignment(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否与矩形ro2在垂直方向上中心对齐
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1与ro2在垂直方向上中心对齐；否则为false
+	 */
+	public boolean isMiddleAligmentVertically(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否与矩形ro2在水平方向上中心对齐
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1与ro2在水平方向上中心对齐；否则为false
+	 */
+	public boolean isMiddleAligmentHorizontally(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否与矩形ro2能被视为同一个矩形
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1与ro2可以被视为同一个矩形；否则为false
+	 */
+	public boolean isSameRectangle(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断ro1和ro2是否在水平方向上相连
+	 * @param ro1 第一个矩形
+	 * @param ro2 第二个矩形
+	 * @return true，如果它们是相连的；否则返回false
+	 */
+	public boolean isConnectedHorizontally(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断ro1和ro2是否在垂直方向上相连
+	 * @param ro1 第一个矩形
+	 * @param ro2 第二个矩形
+	 * @return true，如果它们是相连的；否则返回false
+	 */
+	public boolean isConnectedVertically(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否被矩形ro2所包含
+	 * @param ro1 第一个矩形 
+	 * @param ro2 第二个矩形
+	 * @return true, 如果ro1被ro2所包含；否则为false
+	 */
+	public boolean isContainedBy(Rectangle ro1, Rectangle ro2);
+	
+	/**
+	 * 此方法用于判断矩形ro1是否包含点(x,y)
+	 * @param ro 矩形 
+	 * @param x 点的横坐标
+	 * @param y 点的横坐标
+	 * @return true, 如果ro包含该点；否则为false
+	 */
+	public boolean isContainPoint(Rectangle ro, double x, double y);
+	
+	/**
+	 * 根据该类定义的比较算法返回一个比较器，
+	 * 该比较器应该先按矩形的X坐标排序，
+	 * 对于X坐标相同的，按Y坐标排序
+	 * @return 一个比较器
+	 */
+	public Comparator<?> generateHVComparator();
+	
+	/**
+	 * 根据该类定义的比较算法返回一个比较器，
+	 * 该比较器应该先按矩形的Y坐标排序，
+	 * 对于Y坐标相同的，按X坐标排序
+	 * @return 一个比较器
+	 */
+	public Comparator<?> generateVHComparator();
+}
