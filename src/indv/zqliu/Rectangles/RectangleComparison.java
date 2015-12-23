@@ -1,6 +1,7 @@
 package indv.zqliu.Rectangles;
 
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * 此接口用于定义两个矩形间的位置比较操作，不包括相邻性的判断
@@ -144,4 +145,18 @@ public interface RectangleComparison {
 	 * @return 一个比较器
 	 */
 	public Comparator<?> generateVHComparator();
+	
+	/**
+	 * 对矩形列表先按Y坐标从小到大排序，
+	 * 对于Y坐标几乎相同的按X坐标从小到大排序
+	 * @param rects 要排序的矩形的列表
+	 */
+	public void sortVH(List<? extends Rectangle> rects);
+	
+	/**
+	 * 对矩形列表先按X坐标从小到大排序，
+	 * 对于X坐标几乎相同的按Y坐标从小到大排序
+	 * @param rects 要排序的矩形的列表
+	 */
+	public void sortHV(List<? extends Rectangle> rects);
 }

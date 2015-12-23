@@ -1,6 +1,8 @@
 package indv.zqliu.Rectangles;
 
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 
 /**
@@ -190,4 +192,19 @@ public class LocalRectangleComparator implements RectangleComparator {
 		return ac.strongLess(Math.abs(ro1.getMaxY()-ro2.getMinY()), threshold);
 	}
 
+	@Override
+	public void sortVH(List<? extends Rectangle> rects) {
+		// TODO Auto-generated method stub
+		Comparator<Rectangle> cpt =  this.generateVHComparator();
+		Collections.sort(rects, cpt);
+	}
+
+	@Override
+	public void sortHV(List<? extends Rectangle> rects) {
+		// TODO Auto-generated method stub
+		Comparator<Rectangle> cpt =  this.generateHVComparator();
+		Collections.sort(rects, cpt);
+	}
+
+	
 }

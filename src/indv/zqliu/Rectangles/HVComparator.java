@@ -9,7 +9,7 @@ import java.util.Comparator;
  * @author zqliu
  * @version 1.0
  */
-public class HVComparator implements Comparator<Rectangle> {
+class HVComparator implements Comparator<Rectangle> {
 	RectangleComparison rc;
 	
 	public HVComparator(RectangleComparison method){

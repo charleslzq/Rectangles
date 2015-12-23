@@ -5,7 +5,7 @@ package indv.zqliu.Rectangles;
 * @author zqliu
 * @version 1.0
 */
-public class ApproximateCalculator {
+class ApproximateCalculator {
 		private double err;
 		
 		/**

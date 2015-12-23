@@ -2,7 +2,9 @@ package indv.zqliu.Rectangles;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -205,6 +207,18 @@ public class DefaultRectangleComparator implements RectangleComparator {
 	public double getError() {
 		// TODO Auto-generated method stub
 		return ac.getErr();
+	}
+	
+	@Override
+	public void sortVH(List<? extends Rectangle> rects){
+		Comparator<Rectangle> cpt =  instance.generateVHComparator();
+		Collections.sort(rects, cpt);
+	}
+	
+	@Override
+	public void sortHV(List<? extends Rectangle> rects){
+		Comparator<Rectangle> cpt =  instance.generateHVComparator();
+		Collections.sort(rects, cpt);
 	}
 
 }

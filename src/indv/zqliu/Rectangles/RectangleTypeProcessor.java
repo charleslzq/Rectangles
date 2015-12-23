@@ -7,6 +7,12 @@ package indv.zqliu.Rectangles;
  * @version 1.0
  */
 public interface RectangleTypeProcessor {
+	public enum RectangleType {
+		POINT,
+		VLINE,
+		HLINE,
+		CELL
+	}
 	/**
 	 * 设定判定的阈值
 	 * @param t 判断矩形类型的阈值
