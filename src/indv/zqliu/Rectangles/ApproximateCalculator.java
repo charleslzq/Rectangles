@@ -11,8 +11,11 @@ class ApproximateCalculator {
 		/**
 		   * This method uses an double to initialize this class
 		   * @param e The error.
+		   * @throws IllegamArgumentException e<0
 		   */
-		public ApproximateCalculator(double e){
+		public ApproximateCalculator(double e) throws IllegalArgumentException{
+			if(e<0)
+				throw new IllegalArgumentException("Error can't be less than 0.");
 			err = e;
 		}
 		
@@ -28,9 +31,11 @@ class ApproximateCalculator {
 		/**
 		 * Specify the error.
 		 * @param err The error specified.
+		 * * @throws IllegamArgumentException e<0
 		 */
-
-		public void setErr(double err) {
+		public void setErr(double err) throws IllegalArgumentException{
+			if(err<0)
+				throw new IllegalArgumentException("Error can't be less than 0.");
 			this.err = err;
 		}
 		
@@ -91,7 +96,7 @@ class ApproximateCalculator {
 		 * @return true, if a-b is more than error; false, otherwise
 		 */
 		
-		public synchronized boolean strongMore(double a, double b){
+		public boolean strongMore(double a, double b){
 			if( a > b + err)
 				return true;
 			return false;

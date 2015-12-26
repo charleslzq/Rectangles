@@ -57,10 +57,11 @@ public interface Rectangle {
 	
 	/**
 	 * 重新设定矩形的参数
-	 * @param x 横坐标的最小值
-	 * @param y 纵坐标的最小值
-	 * @param w 宽度
-	 * @param h 高度
+	 * @param x 某个顶点的横坐标
+	 * @param y 某个顶点的纵坐标
+	 * @param w 宽度，可以为负
+	 * @param h 高度，可以为负
+	 * @throws IllegalArgumentException 某个顶点有负的坐标值
 	 */
-	public void setRect(double x, double y, double w, double h);
+	public void setRect(double x, double y, double w, double h) throws IllegalArgumentException;
 }

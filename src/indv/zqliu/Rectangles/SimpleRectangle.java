@@ -13,16 +13,19 @@ public class SimpleRectangle implements Rectangle{
 	
 	/**
 	 * 构造函数
-	 * @param a 矩形横坐标的最小值
-	 * @param b 矩形纵坐标的最小值
-	 * @param c 矩形的宽度
-	 * @param d 矩形的高度
+	 * @param a 某个顶点的横坐标
+	 * @param b 某个顶点的纵坐标
+	 * @param c 宽度，可以为负
+	 * @param d 高度，可以为负
+	 * @throws IllegalArgumentException 某个顶点有负的坐标值
 	 */
-	public SimpleRectangle(double a, double b, double c, double d){
-		x = a;
-		y = b;
-		width = c;
-		height = d;
+	public SimpleRectangle(double a, double b, double c, double d) throws IllegalArgumentException{
+		if(a<0 || b<0 || a+c<0 || b+d<0)
+			throw new IllegalArgumentException();
+		x = c>=0?a:a+c;
+		y = d>=0?b:b+d;
+		width = c>=0?c:-c;
+		height = d>=0?d:-d;
 	}
 
 	@Override
@@ -74,11 +77,13 @@ public class SimpleRectangle implements Rectangle{
 	}
 	
 	@Override
-	public void setRect(double x, double y, double w, double h){
-		this.x = x;
-		this.y = y;
-		this.width = w;
-		this.height = h;
+	public void setRect(double x, double y, double w, double h) throws IllegalArgumentException{
+		if(x<0 || y<0 || x+w<0 || y+h <0)
+			throw new IllegalArgumentException("Illegal Rectangle");
+		this.x = w>=0?x:x+w;
+		this.y = h>=0?y:y+h;
+		this.width = w>=0?w:-w;
+		this.height = h>=0?h:-h;
 	}
 
 }

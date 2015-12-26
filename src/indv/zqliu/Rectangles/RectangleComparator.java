@@ -7,8 +7,9 @@ package indv.zqliu.Rectangles;
  */
 public interface RectangleComparator extends RectangleComparison,
 		RectangleTypeProcessor {
-	
+	/**
+	 * 获取double比较运算的允许误差
+	 * @return double比较运算的允许误差
+	 */
 	public double getError();
-	public double getThreshold();
-
 }

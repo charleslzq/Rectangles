@@ -44,9 +44,11 @@ public class RectangleComparatorTest {
 	public void testSortVH() {
 		//fail("Not yet implemented");
 		comparator.sortVH(rects);
+		comparator.setThreshold(-0.3);
 		System.out.println("VH:");
-		for(SimpleRectangle sr:rects)
-			System.out.println("("+sr.getMinX()+","+sr.getMinY()+")");
+		for(SimpleRectangle sr:rects){
+			System.out.println("("+sr.getMinX()+","+sr.getMinY()+"):"+comparator.getType(sr));
+		}
 	}
 
 }

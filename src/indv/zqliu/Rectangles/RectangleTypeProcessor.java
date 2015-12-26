@@ -16,8 +16,9 @@ public interface RectangleTypeProcessor {
 	/**
 	 * 设定判定的阈值
 	 * @param t 判断矩形类型的阈值
+	 * @throws IllegalArgumentException t<0
 	 */
-	public void setThreshold(double t);
+	public void setThreshold(double t) throws IllegalArgumentException;
 	
 	/**
 	 * 获取判定的阈值
@@ -29,6 +30,7 @@ public interface RectangleTypeProcessor {
 	 * 判断矩形的类型
 	 * @param ro 矩形
 	 * @return 矩形的类型（点，横线，竖线，单元格）
+	 * @throws IlleaglArgumentException ro不能为空
 	 */
-	public RectangleType getType(Rectangle ro);
+	public RectangleType getType(Rectangle ro) throws IllegalArgumentException;
 }
