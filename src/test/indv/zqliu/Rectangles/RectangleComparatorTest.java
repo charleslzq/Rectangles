@@ -9,19 +9,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import indv.zqliu.Rectangles.DefaultRectangleComparator;
-import indv.zqliu.Rectangles.SimpleRectangle;
+import indv.zqliu.Rectangles.Rectangle;
 
 public class RectangleComparatorTest {
-	List<SimpleRectangle> rects;
+	List<Rectangle> rects;
 	DefaultRectangleComparator comparator;
 	
 	@Before
 	public void setup(){
-		SimpleRectangle r1 = new SimpleRectangle(10,10,1,1);
-		SimpleRectangle r2 = new SimpleRectangle(10,20,1,1);
-		SimpleRectangle r3 = new SimpleRectangle(20,10,1,1);
-		SimpleRectangle r4 = new SimpleRectangle(20,20,1,1);
-		rects = new ArrayList<SimpleRectangle>();
+		Rectangle r1 = new Rectangle(10,10,1,1);
+		Rectangle r2 = new Rectangle(10,20,1,1);
+		Rectangle r3 = new Rectangle(20,10,1,1);
+		Rectangle r4 = new Rectangle(20,20,1,1);
+		rects = new ArrayList<Rectangle>();
 		rects.add(r4);
 		
 		rects.add(r2);
@@ -36,7 +36,7 @@ public class RectangleComparatorTest {
 		//fail("Not yet implemented");
 		comparator.sortHV(rects);
 		System.out.println("HV:");
-		for(SimpleRectangle sr:rects)
+		for(Rectangle sr:rects)
 			System.out.println("("+sr.getMinX()+","+sr.getMinY()+")");
 	}
 
@@ -46,7 +46,7 @@ public class RectangleComparatorTest {
 		comparator.sortVH(rects);
 		comparator.setThreshold(-0.3);
 		System.out.println("VH:");
-		for(SimpleRectangle sr:rects){
+		for(Rectangle sr:rects){
 			System.out.println("("+sr.getMinX()+","+sr.getMinY()+"):"+comparator.getType(sr));
 		}
 	}

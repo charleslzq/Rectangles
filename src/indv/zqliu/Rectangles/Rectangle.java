@@ -1,67 +1,80 @@
 package indv.zqliu.Rectangles;
 
 /**
- * 此接口用于定义矩形的基本参数操作
+ * 一个简单的矩形类，实现RectangleOperation接口
  * @author 刘正亓
  * @version 1.0
  */
-public interface Rectangle {
+public class Rectangle{
+	private double x;
+	private double y;
+	private double width;
+	private double height;
 	
 	/**
-	 * 得到该矩形横坐标的最小值
-	 * @return 横坐标的最小值
-	 */
-	public double getMinX();
-	
-	/**
-	 * 得到该矩形横坐标的中间值
-	 * @return 横坐标的中间值
-	 */
-	public double getMidX();
-	
-	/**
-	 * 得到该矩形横坐标的最大值
-	 * @return 横坐标的最大值
-	 */
-	public double getMaxX();
-	
-	/**
-	 * 得到该矩形纵坐标的最小值
-	 * @return 纵坐标的最小值
-	 */
-	public double getMinY();
-	
-	/**
-	 * 得到该矩形纵坐标的中间值
-	 * @return 纵坐标的中间值
-	 */
-	public double getMidY();
-	
-	/**
-	 * 得到该矩形纵坐标的最大值
-	 * @return 纵坐标的最大值
-	 */
-	public double getMaxY();
-	
-	/**
-	 * 得到该矩形的宽度
-	 * @return 矩形的宽度
-	 */
-	public double getWidth();
-	
-	/**
-	 * 得到该矩形的高度
-	 * @return 矩形的高度
-	 */
-	public double getHeight();
-	
-	/**
-	 * 重新设定矩形的参数
-	 * @param x 某个顶点的横坐标
-	 * @param y 某个顶点的纵坐标
-	 * @param w 宽度，可以为负
-	 * @param h 高度，可以为负
+	 * 构造函数
+	 * @param a 某个顶点的横坐标
+	 * @param b 某个顶点的纵坐标
+	 * @param c 宽度，可以为负
+	 * @param d 高度，可以为负
 	 * @throws IllegalArgumentException 某个顶点有负的坐标值
 	 */
-	public void setRect(double x, double y, double w, double h) throws IllegalArgumentException;
+	public Rectangle(double a, double b, double c, double d) throws IllegalArgumentException{
+		if(a<0 || b<0 || a+c<0 || b+d<0)
+			throw new IllegalArgumentException();
+		x = c>=0?a:a+c;
+		y = d>=0?b:b+d;
+		width = c>=0?c:-c;
+		height = d>=0?d:-d;
+	}
+
+	public double getMinX() {
+		// TODO Auto-generated method stub
+		return x;
+	}
+
+	public double getMaxX() {
+		// TODO Auto-generated method stub
+		return x+width;
+	}
+
+	public double getMinY() {
+		// TODO Auto-generated method stub
+		return y;
+	}
+
+	public double getMaxY() {
+		// TODO Auto-generated method stub
+		return y+height;
+	}
+
+	public double getWidth() {
+		// TODO Auto-generated method stub
+		return width;
+	}
+
+	public double getHeight() {
+		// TODO Auto-generated method stub
+		return height;
+	}
+
+	public double getMidX() {
+		// TODO Auto-generated method stub
+		return x+width/2;
+	}
+
+	public double getMidY() {
+		// TODO Auto-generated method stub
+		return y+height/2;
+	}
+	
+	public void setRect(double x, double y, double w, double h) throws IllegalArgumentException{
+		if(x<0 || y<0 || x+w<0 || y+h <0)
+			throw new IllegalArgumentException("Illegal Rectangle");
+		this.x = w>=0?x:x+w;
+		this.y = h>=0?y:y+h;
+		this.width = w>=0?w:-w;
+		this.height = h>=0?h:-h;
+	}
+
 }
