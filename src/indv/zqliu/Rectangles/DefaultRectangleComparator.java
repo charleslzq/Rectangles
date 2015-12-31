@@ -20,9 +20,9 @@ public class DefaultRectangleComparator implements RectangleComparator {
 	private final ApproximateCalculator  ac;
 	private static DefaultRectangleComparator instance;
 	
-	private DefaultRectangleComparator(double t, double e) throws IllegalArgumentException{
+	private DefaultRectangleComparator(double t, double e){
 		if(t<0)
-			throw new IllegalArgumentException("Threshold should not be less than 0.");
+			throw new NullPointerException("Threshold should not be less than 0.");
 		threshold = t;
 		ac = new ApproximateCalculator(e);
 	}
@@ -36,7 +36,7 @@ public class DefaultRectangleComparator implements RectangleComparator {
 				double threshold = Double.valueOf(properties.getProperty("Threshold"));
 				double error = Double.valueOf(properties.getProperty("Error"));
 				instance = new DefaultRectangleComparator(threshold,error);
-			} catch(IllegalArgumentException iae){
+			} catch(NullPointerException iae){
 				iae.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -47,9 +47,9 @@ public class DefaultRectangleComparator implements RectangleComparator {
 	}
 
 	@Override
-	public void setThreshold(double t) throws IllegalArgumentException{
+	public void setThreshold(double t){
 		// TODO Auto-generated method stub
-		throw new IllegalArgumentException("Threshold can't be changed. Using LocalRectangleComparator instead.");
+		throw new UnsupportedOperationException("Threshold can't be changed. Using LocalRectangleComparator instead.");
 	}
 	
 
@@ -64,10 +64,10 @@ public class DefaultRectangleComparator implements RectangleComparator {
 	}
 
 	@Override
-	public RectangleType getType(Rectangle ro) throws IllegalArgumentException{
+	public RectangleType getType(Rectangle ro){
 		// TODO Auto-generated method stub
 		if(ro == null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		if(ro.getWidth() <= this.threshold){
 			if(ro.getHeight() <= this.threshold)
 				return RectangleType.POINT;
@@ -79,62 +79,62 @@ public class DefaultRectangleComparator implements RectangleComparator {
 	}
 
 	@Override
-	public boolean isOnLeft(Rectangle ro1, Rectangle ro2) throws IllegalArgumentException{
+	public boolean isOnLeft(Rectangle ro1, Rectangle ro2){
 		// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return ac.strongLess(ro1.getMinX()+threshold, ro2.getMinX());
 	}
 
 	@Override
-	public boolean isOnTop(Rectangle ro1, Rectangle ro2) throws IllegalArgumentException{
+	public boolean isOnTop(Rectangle ro1, Rectangle ro2){
 		// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return ac.strongLess(ro1.getMinY()+threshold, ro2.getMinY());
 	}
 
 	@Override
 	public boolean isLeftAlignment(Rectangle ro1,
-			Rectangle ro2) throws IllegalArgumentException{
+			Rectangle ro2){
 		// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return this.equalWithInLineWidth(ro1.getMinX(), ro2.getMinX());
 	}
 
 	@Override
 	public boolean isRightAlignment(Rectangle ro1,
-			Rectangle ro2) throws IllegalArgumentException{
+			Rectangle ro2){
 		// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return this.equalWithInLineWidth(ro1.getMaxX(), ro2.getMaxX());
 	}
 
 	@Override
-	public boolean isTopAlignment(Rectangle ro1, Rectangle ro2) throws IllegalArgumentException{
+	public boolean isTopAlignment(Rectangle ro1, Rectangle ro2){
 		// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return this.equalWithInLineWidth(ro1.getMinY(), ro2.getMinY());
 	}
 
 	@Override
 	public boolean isBottomAlignment(Rectangle ro1,
-			Rectangle ro2) throws IllegalArgumentException{
+			Rectangle ro2){
 		// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return this.equalWithInLineWidth(ro1.getMaxY(), ro2.getMaxY());
 	}
 
 	@Override
 	public boolean isSameRectangle(Rectangle ro1,
-			Rectangle ro2) throws IllegalArgumentException{
+			Rectangle ro2){
 				// TODO Auto-generated method stub
 				if(ro1 == null || ro2==null)
-					throw new IllegalArgumentException("Argument can't be null");
+					throw new NullPointerException("Argument can't be null");
 		return this.isLeftAlignment(ro1, ro2)
 				&& this.isTopAlignment(ro1, ro2)
 				&& this.isRightAlignment(ro1, ro2)
@@ -142,19 +142,22 @@ public class DefaultRectangleComparator implements RectangleComparator {
 	}
 
 	@Override
-	public boolean isContainedBy(Rectangle ro1, Rectangle ro2) throws IllegalArgumentException{
+	public boolean isContainedBy(Rectangle ro1, Rectangle ro2){
 		// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return this.isContainPoint(ro2, ro1.getMinX(), ro1.getMinY()) 
 				&& this.isContainPoint(ro2, ro1.getMaxX(), ro1.getMaxY());
 	}
 
 	@Override
-	public boolean isContainPoint(Rectangle ro, double x, double y) throws IllegalArgumentException{
+	public boolean isContainPoint(Rectangle ro, double x, double y){
 		// TODO Auto-generated method stub
 		if(ro == null || x<0 || y<0)
-			throw new IllegalArgumentException();
+			throw new NullPointerException("Rectangle cannot be null");
+		if(x<0 || y<0)
+			throw new IllegalArgumentException("Coordinates cannot be negative");
+		
 		if(x > ro.getMaxX())
 			return false;
 		if(x < ro.getMinX())
@@ -168,27 +171,27 @@ public class DefaultRectangleComparator implements RectangleComparator {
 
 	@Override
 	public boolean isMiddleAligmentVertically(Rectangle ro1,
-			Rectangle ro2) throws IllegalArgumentException{
+			Rectangle ro2){
 				// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return this.equalWithInLineWidth(ro1.getMidY(), ro2.getMidY());
 	}
 
 	@Override
 	public boolean isMiddleAligmentHorizontally(Rectangle ro1,
-			Rectangle ro2) throws IllegalArgumentException{
+			Rectangle ro2){
 				// TODO Auto-generated method stub
 				if(ro1 == null || ro2==null)
-					throw new IllegalArgumentException("Argument can't be null");
+					throw new NullPointerException("Argument can't be null");
 		return this.equalWithInLineWidth(ro1.getMidX(), ro2.getMidX());
 	}
 
 	@Override
-	public boolean isOnTopLeft(Rectangle ro1, Rectangle ro2) throws IllegalArgumentException{
+	public boolean isOnTopLeft(Rectangle ro1, Rectangle ro2){
 		// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		if(this.isTopAlignment(ro1, ro2))
 			return this.isOnLeft(ro1, ro2);
 		else
@@ -196,10 +199,10 @@ public class DefaultRectangleComparator implements RectangleComparator {
 	}
 
 	@Override
-	public boolean isOnLeftTop(Rectangle ro1, Rectangle ro2) throws IllegalArgumentException{
+	public boolean isOnLeftTop(Rectangle ro1, Rectangle ro2){
 		// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		if(this.isLeftAlignment(ro1, ro2))
 			return this.isOnTop(ro1, ro2);
 		else
@@ -220,19 +223,19 @@ public class DefaultRectangleComparator implements RectangleComparator {
 	
 	@Override
 	public boolean isConnectedHorizontally(Rectangle ro1,
-			Rectangle ro2)throws IllegalArgumentException{
+			Rectangle ro2){
 				// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return ac.strongLess(Math.abs(ro1.getMaxX()-ro2.getMinX()), threshold);
 	}
 
 	@Override
 	public boolean isConnectedVertically(Rectangle ro1,
-			Rectangle ro2) throws IllegalArgumentException{
+			Rectangle ro2){
 				// TODO Auto-generated method stub
 		if(ro1 == null || ro2==null)
-			throw new IllegalArgumentException("Argument can't be null");
+			throw new NullPointerException("Argument can't be null");
 		return ac.strongLess(Math.abs(ro1.getMaxY()-ro2.getMinY()), threshold);
 	}
 

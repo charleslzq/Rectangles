@@ -19,7 +19,7 @@ public class Rectangle{
 	 * @param d 高度，可以为负
 	 * @throws IllegalArgumentException 某个顶点有负的坐标值
 	 */
-	public Rectangle(double a, double b, double c, double d) throws IllegalArgumentException{
+	public Rectangle(double a, double b, double c, double d){
 		if(a<0 || b<0 || a+c<0 || b+d<0)
 			throw new IllegalArgumentException();
 		x = c>=0?a:a+c;
@@ -68,7 +68,7 @@ public class Rectangle{
 		return y+height/2;
 	}
 	
-	public void setRect(double x, double y, double w, double h) throws IllegalArgumentException{
+	public void setRect(double x, double y, double w, double h){
 		if(x<0 || y<0 || x+w<0 || y+h <0)
 			throw new IllegalArgumentException("Illegal Rectangle");
 		this.x = w>=0?x:x+w;
