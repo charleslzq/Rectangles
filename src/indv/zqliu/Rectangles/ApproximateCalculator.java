@@ -5,15 +5,15 @@ package indv.zqliu.Rectangles;
 * @author zqliu
 * @version 1.0
 */
-class ApproximateCalculator {
-		private double err;
+final class ApproximateCalculator {
+		private final double err;
 		
 		/**
 		   * This method uses an double to initialize this class
 		   * @param e The error.
 		   * @throws IllegamArgumentException e<0
 		   */
-		public ApproximateCalculator(double e) throws IllegalArgumentException{
+		ApproximateCalculator(double e) throws IllegalArgumentException{
 			if(e<0)
 				throw new IllegalArgumentException("Error can't be less than 0.");
 			err = e;
@@ -26,17 +26,6 @@ class ApproximateCalculator {
 
 		public double getErr() {
 			return err;
-		}
-		
-		/**
-		 * Specify the error.
-		 * @param err The error specified.
-		 * * @throws IllegamArgumentException e<0
-		 */
-		public void setErr(double err) throws IllegalArgumentException{
-			if(err<0)
-				throw new IllegalArgumentException("Error can't be less than 0.");
-			this.err = err;
 		}
 		
 		/**

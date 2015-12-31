@@ -15,7 +15,7 @@ import java.util.Properties;
  * @author ¡ı’˝ÿ¡
  * @version 1.0
  */
-public class DefaultRectangleComparator implements RectangleComparator {
+public class DefaultRectangleComparator implements RectangleComparison {
 	private final double threshold;
 	private final ApproximateCalculator  ac;
 	private static DefaultRectangleComparator instance;
@@ -61,21 +61,6 @@ public class DefaultRectangleComparator implements RectangleComparator {
 	
 	public boolean equalWithInLineWidth(double a, double b){
 		return Math.abs(a-b)<=threshold;
-	}
-
-	@Override
-	public RectangleType getType(Rectangle ro){
-		// TODO Auto-generated method stub
-		if(ro == null)
-			throw new NullPointerException("Argument can't be null");
-		if(ro.getWidth() <= this.threshold){
-			if(ro.getHeight() <= this.threshold)
-				return RectangleType.POINT;
-			return RectangleType.VLINE;
-		}
-		if(ro.getHeight() <= this.threshold)
-			return RectangleType.HLINE;
-		return RectangleType.CELL;
 	}
 
 	@Override

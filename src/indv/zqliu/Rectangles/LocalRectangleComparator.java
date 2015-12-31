@@ -11,7 +11,7 @@ import java.util.List;
  * @author ¡ı’˝ÿ¡
  * @version 1.0
  */
-public class LocalRectangleComparator implements RectangleComparator {
+public class LocalRectangleComparator implements RectangleComparison {
 	private double threshold;
 	private ApproximateCalculator  ac;
 	
@@ -43,7 +43,7 @@ public class LocalRectangleComparator implements RectangleComparator {
 	public void setError(double e){
 		if(e<0)
 			throw new IllegalArgumentException("Error should not be less than 0.");
-		ac.setErr(e);
+		ac = new ApproximateCalculator(e);
 	}
 	
 	/**
@@ -52,21 +52,6 @@ public class LocalRectangleComparator implements RectangleComparator {
 	 */
 	public double getError(){
 		return ac.getErr();
-	}
-
-	@Override
-	public RectangleType getType(Rectangle ro){
-		// TODO Auto-generated method stub
-		if(ro == null)
-			throw new NullPointerException("Argument can't be null");
-		if(ro.getWidth() <= this.threshold){
-			if(ro.getHeight() <= this.threshold)
-				return RectangleType.POINT;
-			return RectangleType.VLINE;
-		}
-		if(ro.getHeight() <= this.threshold)
-			return RectangleType.HLINE;
-		return RectangleType.CELL;
 	}
 
 	public boolean equalWithInLineWidth(double a, double b){

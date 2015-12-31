@@ -10,6 +10,23 @@ import java.util.List;
  */
 public interface RectangleComparison {
 	/**
+	 * 获取double比较运算的允许误差
+	 * @return double比较运算的允许误差
+	 */
+	public double getError();
+	/**
+	 * 设定线宽的阈值
+	 * @param t 判定矩形是否能被认为是一条直线的阈值
+	 * @throws IllegalArgumentException t<0
+	 */
+	public void setThreshold(double t);
+	
+	/**
+	 * 获取线宽的阈值
+	 * @return 判定矩形是否能被认为是一条直线的阈值
+	 */
+	public double getThreshold();
+	/**
 	 * 此方法用于判断矩形ro1是否在矩形ro2的左侧
 	 * @param ro1 第一个矩形 
 	 * @param ro2 第二个矩形

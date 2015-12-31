@@ -5,11 +5,11 @@ package indv.zqliu.Rectangles;
  * @author 刘正亓
  * @version 1.0
  */
-public class Rectangle{
-	private double x;
-	private double y;
-	private double width;
-	private double height;
+public abstract class Rectangle{
+	private final double x;
+	private final double y;
+	private final double width;
+	private final double height;
 	
 	/**
 	 * 构造函数
@@ -19,7 +19,7 @@ public class Rectangle{
 	 * @param d 高度，可以为负
 	 * @throws IllegalArgumentException 某个顶点有负的坐标值
 	 */
-	public Rectangle(double a, double b, double c, double d){
+	Rectangle(double a, double b, double c, double d){
 		if(a<0 || b<0 || a+c<0 || b+d<0)
 			throw new IllegalArgumentException();
 		x = c>=0?a:a+c;
@@ -68,13 +68,15 @@ public class Rectangle{
 		return y+height/2;
 	}
 	
-	public void setRect(double x, double y, double w, double h){
-		if(x<0 || y<0 || x+w<0 || y+h <0)
-			throw new IllegalArgumentException("Illegal Rectangle");
-		this.x = w>=0?x:x+w;
-		this.y = h>=0?y:y+h;
-		this.width = w>=0?w:-w;
-		this.height = h>=0?h:-h;
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.getClass().getSimpleName()+":\t");
+		sb.append("x:"+x+"\t");
+		sb.append("y:"+y+"\t");
+		sb.append("width:"+width+"\t");
+		sb.append("height:"+height);
+		
+		return sb.toString();
 	}
 
 }
